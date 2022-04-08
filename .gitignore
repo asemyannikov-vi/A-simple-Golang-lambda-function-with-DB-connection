@@ -1,0 +1,3 @@
+/.aws-sam
+/lambdas/main/main
+/lambdas/main/main.zip

@@ -1,0 +1,36 @@
+Description: "Sample of λ-function's template."
+Globals:
+  Function:
+    Timeout: 5
+Resources:
+  mainFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: main.zip
+      Handler: main
+      Runtime: go1.x
+      Tracing: Active
+      Events:
+        Health:
+          Type: Api
+          Properties:
+            Path: /
+            Method: GET
+        CreateSchema:
+          Type: Api
+          Properties:
+            Path: /
+            Method: POST
+        DropSchema:
+          Type: Api
+          Properties:
+            Path: /
+            Method: DELETE
+      Environment:
+        Variables:
+          DB_SCHEMA:   "skeleton"
+          DB_USER:     "postgres"
+          DB_PASSWORD: "postgres"
+          DB_HOST:     "172.21.0.1"
+          DB_DBNAME:   "postgres"
+          DB_PORT:     "5432"
